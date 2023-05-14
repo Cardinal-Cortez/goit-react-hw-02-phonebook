@@ -1,11 +1,11 @@
 import { InputAddNumber } from './styled'
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export class InputNumber extends Component {
 
     render() {
         const { handleNumberChange, number} = this.props;
-
         return (
             <div>
                 <h2>Number</h2>
@@ -22,3 +22,7 @@ export class InputNumber extends Component {
     }
 };
 
+InputNumber.propTypes = {
+    handleNumberChange: PropTypes.func.isRequired,
+    number: PropTypes.string.isRequired,
+};

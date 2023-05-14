@@ -1,11 +1,11 @@
 import { InputAddName } from "./styled";
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export class InputName extends Component {
 
     render() {   
-const { handleNameChange, name} = this.props;
-
+    const { handleNameChange, name} = this.props;
         return (
             <div>
                 <h2>Name</h2>
@@ -20,4 +20,8 @@ const { handleNameChange, name} = this.props;
             </div>
         );
     }
+};
+InputName.propTypes = {
+  handleNameChange: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
 };

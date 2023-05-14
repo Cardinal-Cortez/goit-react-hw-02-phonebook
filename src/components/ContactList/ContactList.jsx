@@ -1,6 +1,7 @@
 import { Todo } from "components/Todo"; 
 import { List } from "./styled";
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export class ContactList extends Component{
     render() {
@@ -23,3 +24,17 @@ export class ContactList extends Component{
     }
 };
 
+ContactList.propTypes = {
+  filter: PropTypes.string.isRequired,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+      ]).isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
+};

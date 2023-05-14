@@ -1,6 +1,6 @@
 import { InputContacts } from "./Styled";
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
 
 export class Filter extends Component{
     
@@ -11,8 +11,9 @@ export class Filter extends Component{
             <InputContacts value={filter} onChange={handleChange} />
         );
     }
-
 };
    
-
+Filter.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+};
 
