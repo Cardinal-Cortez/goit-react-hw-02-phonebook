@@ -1,9 +1,8 @@
 import { Number, Item, Name, ButtonDel } from "./styled";
 
-export const Todo = ({ name, number }) => {
-  const handleDelete = (e) => {
-      const item = e.target.parentNode;
-  item.parentNode.removeChild(item);
+export const Todo = ({ name, number, onDelete }) => {
+ const handleDelete = () => {
+    onDelete();
   };
 
   return (

@@ -1,9 +1,10 @@
 import React, {Component} from "react";
-import { AddContact, Section, H1, Search} from "./styled";
+import { AddContact, Section, H1, ContactForm} from "./styled";
 import { InputName } from "components/InputName";
 import { InputNumber } from "components/InputNumber";
-import { Contacts } from "components/ButtonAdd";
+import { Filter } from "components/ButtonAdd";
 import { nanoid } from 'nanoid';
+import { ContactList } from "components/ContactList";
 
 export class Input extends Component {
 
@@ -18,6 +19,12 @@ export class Input extends Component {
       filter: '',
       number: ''
   }
+  handleDeleteContact = (id) => {
+    this.setState((prevState) => ({
+      contacts: prevState.contacts.filter((e) => e.id !== id)
+    }));
+  };
+
 
 handleChange = (e) => {
     const { value } = e.target;
@@ -62,12 +69,25 @@ handleSubmit = (e) => {
       return (
         <Section>
           <H1>Phonebook</H1>
-          <Search onSubmit={handleSubmit}>
-            <InputName handleNameChange={handleNameChange} name={this.state.name} />
-            <InputNumber handleNumberChange={handleNumberChange} number={this.state.number}/>
+          <ContactForm onSubmit={handleSubmit}>
+            <InputName
+              handleNameChange={handleNameChange}
+              name={this.state.name}
+            />
+            <InputNumber
+              handleNumberChange={handleNumberChange}
+              number={this.state.number}
+            />
           <AddContact type="submit" >Add Contact</AddContact>
-        </Search>
-          <Contacts state={state} handleChange={handleChange}/>
+          </ContactForm>
+          <h2>Contacts</h2>
+          <Filter state={state}
+            handleChange={handleChange} />
+          <ContactList
+            filter={this.state.filter}
+            contacts={this.state.contacts}
+            onDeleteContact={this.handleDeleteContact}
+          />
         </Section>
       );
     };
