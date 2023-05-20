@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 export class Filter extends Component{
     
     render() {
-    const { handleChange } = this.props;
-    const { filter} = this.props.state;
+    const { handleChange, filter } = this.props;
+    // const { filter} = this.props.state;
         return (
             <InputContacts value={filter} onChange={handleChange} />
         );
@@ -14,6 +14,7 @@ export class Filter extends Component{
 };
    
 Filter.propTypes = {
-  handleChange: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    filter: PropTypes.string.isRequired,
 };
 

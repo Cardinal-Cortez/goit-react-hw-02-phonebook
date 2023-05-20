@@ -1,4 +1,5 @@
 import { Number, Item, Name, ButtonDel } from "./styled";
+import PropTypes from "prop-types";
 
 export const Todo = ({ name, number, onDelete }) => {
  const handleDelete = () => {
@@ -14,4 +15,10 @@ export const Todo = ({ name, number, onDelete }) => {
       </Item>
     </ul>
   );
+};
+
+Todo.propTypes = {
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };

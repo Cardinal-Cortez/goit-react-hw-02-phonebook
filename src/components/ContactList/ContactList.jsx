@@ -5,13 +5,10 @@ import PropTypes from "prop-types";
 
 export class ContactList extends Component{
     render() {
-    const { filter, contacts, onDeleteContact  } = this.props;
+    const { onDeleteContact, contacts } = this.props;
         return (
             <List>
                 {contacts
-                    .filter((item) =>
-                        item.name.toLowerCase().includes(filter.toLowerCase())
-                    )
                     .map((item) => (
                         <Todo
                             {...item}
@@ -36,5 +33,4 @@ ContactList.propTypes = {
       number: PropTypes.string.isRequired,
     })
   ).isRequired,
-  onDeleteContact: PropTypes.func.isRequired,
 };

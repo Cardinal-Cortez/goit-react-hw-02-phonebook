@@ -49,7 +49,8 @@ handleSubmit = (e) => {
   e.preventDefault();
   const { name, number } = this.state;
    const existingContact = this.state.contacts.find((contact) => {
-  return contact.name.toLowerCase() === name.toLowerCase() && contact.number === number;
+  // return contact.name.toLowerCase() === name.toLowerCase() && contact.number === number;
+     return contact.name.toLowerCase() === name.toLowerCase();
   });
   if (existingContact) {
     alert(`${name} is already in contacts.`);
@@ -62,10 +63,25 @@ handleSubmit = (e) => {
     name: '',
     number: ''
   }));
-};
+  };
+  filters = () => {
+    const { contacts, filter } = this.state;
+
+    return contacts.filter((item) =>
+      item.name.toLowerCase().includes(filter.toLowerCase())
+    )
+  };
 
   render() {
-      const { state, handleChange, handleNameChange, handleNumberChange, handleSubmit} = this;
+    const {
+      state,
+      handleChange,
+      handleNameChange,
+      handleNumberChange,
+      handleSubmit,
+      // contacts,
+      // filter
+    } = this;
       return (
         <Section>
           <H1>Phonebook</H1>
@@ -81,11 +97,11 @@ handleSubmit = (e) => {
           <AddContact type="submit" >Add Contact</AddContact>
           </ContactForm>
           <h2>Contacts</h2>
-          <Filter state={state}
+          <Filter filter={state.filter}
             handleChange={handleChange} />
           <ContactList
             filter={this.state.filter}
-            contacts={this.state.contacts}
+            contacts={this.filters()}
             onDeleteContact={this.handleDeleteContact}
           />
         </Section>
